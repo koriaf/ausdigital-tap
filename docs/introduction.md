@@ -2,16 +2,16 @@
 
 The Ledger Access Point (LAP) is a persistently connected "peer" capable of sending and
 receiving business documents, such as invoices. It interacts with other LAPs following the
-protocol specified in this document. The LAP is an autonimous agent in business-to-business
+protocol specified in this document. The LAP is an autonomous agent in business-to-business
 document exchange.
 
 A LAP might be provided by a commercial ledger service, or maintained as part of an
 independent business system. 
 
 The LAP specification has two parts. The main part (LAP) defines the protocol all peers
-must follow (and interfaces they must provide) to send and recieve business documents. The
+must follow (and interfaces they must provide) to send and receive business documents. The
 second part is an optional gateway specification (LAPGW), which defines a client-server
-protocol for ledgers to interact with independant LAP service providers in a generic way.
+protocol for ledgers to interact with independent LAP service providers in a generic way.
 
 
 ## Dependancies
