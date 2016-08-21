@@ -3,7 +3,7 @@
 ## ADBC Ledger Access Point Specification
 
  * Status: raw
- * Editor: Chris Gough cg@tradewire.io
+ * Editor: Chris Gough
  * Contributors: Steve Capell
 
 This document describes a protocol for exchanging business documents (such as invoices)
@@ -28,7 +28,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
 PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program;
-if not, see http://www.gnu.org/licenses.
+if not, see [http://www.gnu.org/licenses](http://www.gnu.org/licenses).
 
 
 ## Change Process
@@ -49,15 +49,31 @@ TODO: define other key terms here
 
 The Ledger Access Point (LAP) is a persistently connected "peer" capable of sending and
 receiving business documents, such as invoices. It interacts with other LAPs following the
-protocol specified in this document, and relys on other ADBC services to accomplish this.
-The LAP is an autonimous agent in business-to-business document exchange. A LAP might be
-provided by a commercial ledger service, or maintained as part of an independent business
-system. 
+protocol specified in this document. The LAP is an autonimous agent in business-to-business
+document exchange.
+
+A LAP might be provided by a commercial ledger service, or maintained as part of an
+independent business system. 
 
 The LAP specification has two parts. The main part (LAP) defines the protocol all peers
 must follow (and interfaces they must provide) to send and recieve business documents. The
 second part is an optional gateway specification (LAPGW), which defines a client-server
 protocol for ledgers to interact with independant LAP service providers in a generic way.
+
+
+## Dependancies
+
+billing-semantics
+
+All LAPs depend on the following ADBC Services:
+ * DCL
+ * SMP
+ * NTY
+
+LAPGW providers also depend on
+ * IDP
+
+TODO: descriptions and links
 
 
 ## LAP Gateway (LAPGW)
@@ -81,11 +97,6 @@ capable of inspecting encrypyed documents and cannot sign documents on anyones b
 
 TODO: is a LAPGW is responsible for signature validation? I think it's just a curtesy,
 if you want to be sure check it yourself.
-
-
-## Dependancies
-
-TODO: list/link the other ADBC services; DCL, SMP, NTY, billing-semantics, IDP.
 
 
 ## LAP Protocol Overview
