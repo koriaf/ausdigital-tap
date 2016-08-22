@@ -28,8 +28,10 @@ All LAPs depend on the following ADBC Services:
  * [Metadata publisher (SMP)](http://metadata-publisher.readthedocs.io/)
  * [Notary (NTY)](http://notary.readthedocs.io)
 
-LAPGW providers also depend on
- * [Identity Provider (IDP)](http://identity-provider.readthedocs.io/)
+LAPGW providers also depend on the
+[Identity Provider (IDP)](http://identity-provider.readthedocs.io/). LAPs do not need to
+authenticate when they interact with each other, due to use of well known cryprograpic keys
+and service endpoint addresses.
 
 
 ## LAP Gateway (LAPGW)
