@@ -2,6 +2,8 @@
 
 ## ADBC Ledger Access Point (LAP) Specification
 
+![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
+
  * Status: raw
  * Editor: Chris Gough
  * Contributors: Steve Capell
