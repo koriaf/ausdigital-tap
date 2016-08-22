@@ -1,6 +1,6 @@
 # 1/LAP
 
-## ADBC Ledger Access Point Specification
+## ADBC Ledger Access Point (LAP) Specification
 
  * Status: raw
  * Editor: Chris Gough
@@ -8,11 +8,11 @@
 
 This document describes a protocol for exchanging business documents (such as invoices)
 between ledgers. LAP is a secure, decentralised, peer to peer architecture where gateways
-are optional and minimaly trusted.
+are optional and minimally trusted.
 
 This specification aims to support the Australian Digital Business Council
 [eInvoicing initiative](https://ausdigital.github.io), and is under active development
-at the ausdigital [GitHub site](https://github.com/ausdigital/access-point).
+at [https://github.com/ausdigital/access-point](https://github.com/ausdigital/access-point).
 
 
 ## Licence
