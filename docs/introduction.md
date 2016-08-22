@@ -53,9 +53,6 @@ functions such as message validation, logging, access control, and protocol call
 A LAPGW is minimally trusted; it is not custodian of business key material, is not
 capable of inspecting encrypyed documents and cannot sign documents on anyones behalf.
 
-TODO: is a LAPGW is responsible for signature validation? I think it's just a curtesy,
-if you want to be sure check it yourself.
-
 
 ## LAP Protocol Overview
 
