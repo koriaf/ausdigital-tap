@@ -14,19 +14,22 @@ second part is an optional gateway specification (LAPGW), which defines a client
 protocol for ledgers to interact with independent LAP service providers in a generic way.
 
 
-## Dependancies
+## Dependencies
 
-billing-semantics
+The messages send between LAPs carry payloads that encode
+[billing-semantics](https://billing-semantics.readthedocs.io/).
+This specification is maintained independently in the
+[https://github.com/ausdigital/billing-semantics](https://github.com/ausdigital/billing-semantics)
+repository. Future semantic payloads may be supported without change to the protocol.
 
 All LAPs depend on the following ADBC Services:
- * DCL
- * SMP
- * NTY
+
+ * [Capability locator (DCL)](http://capability-locator.readthedocs.io/)
+ * [Metadata publisher (SMP)](http://metadata-publisher.readthedocs.io/)
+ * [Notary (NTY)](http://notary.readthedocs.io)
 
 LAPGW providers also depend on
- * IDP
-
-TODO: descriptions and links
+ * [Identity Provider (IDP)](http://identity-provider.readthedocs.io/)
 
 
 ## LAP Gateway (LAPGW)
