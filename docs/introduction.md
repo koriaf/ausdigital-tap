@@ -44,9 +44,13 @@ The `message` part is a mixture of cleartext metadata (used by TAPs) and encyphe
 
 The `signature` part is created by a business system component trusted by the sender (with access to the sender's private key material). The signature can be used as a unique identifier of the message contents (e.g. transmitted document id).
 
-Receiving TAPs may also use the signature as a filter (messages with invalid signatures MAY be dropped by recieving TAPs, rather than delivered). This allows TAPs to buffer trusted components from nusiance false messages, protection from anonymous denial of service flooding attacks against the trusted business system. 
+![Illustration of POST body](./tap_overview_post.png "Business document sent to TAP")
+
+Receiving TAPs may also use the signature as a filter (messages with invalid signatures MAY be dropped by recieving TAPs, rather than delivered). This allows TAPs to buffer trusted components from anonymous denial of service attacks.
 
 When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: text/json`, containing a HATEOS-style list of callback URLs.
+
+![Illustration of HTTP 200 response](./tap_overview_response.png "Response 200 OK")
 
 See the TAP Protocol Details chapter for more information.
 
