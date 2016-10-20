@@ -9,8 +9,6 @@ The TAP Protocol is a very simple REST API. One business sends a message directl
 
 ## Sending a business message
 
-HTTP POST (HTTPS).
-
 Pre-requsites:
 
  * Sender knows their own business identity, and has access to their own private key.
@@ -20,19 +18,36 @@ Pre-requsites:
  * Sender knows appropriate recipient public key (discovered via SMP lookup).
  * The sender has a valid cleartext (not encrypted) business document to send (e.g. an invoice), encoding the appropriate business semantics (e.g. UBL2.0) in an appropriate format (e.g. json).
 
+The process is:
+
+ * Sign the business message
+ * Identify hashing algorithm
+ * Create hash of signed business document
+ * Create cyphertext of the signed business document
+ * Create message
+ * Generate message signature
+ * POST message and signature to the recipient TAP
+
 
 ### Sign the Business Document
 
-signed_document = sign(own.secret_key, TAP.PubKey, document)
+The TAP protocol can be used to transport any business message in any format. We assume the message is formatted as XML or JSON and UTF-8 encoded.
 
-GPG example.
+Message signing is interpreted in the sense used by the OpenPGP standard (RFC4880), however strict compliance would involve 3DES algorithm which is not supported. Approved signing algorithms are those determined `--safe` by the *modern* (Eliptic Curve Cryptography compatible) distribution of GnuPG. This is version 2.1.15 at the time of writing, but any stable release at or above v2.1.15 is appropriate.
 
-TODO:
+Business documents compression is discouraged, because it is redundant due to compression at the HTTP layer (per RFC2616 and RFC1952). Business documents MAY be compressed with ZIP (RFC1951), ZLIB (RFC1950), or BZip2 algorithms.
 
- * nominage use of GnuPG, identify appropriate RFCs etc.
+The business document and signature are combined into a single ASCII-Armoured file per RFC4880 (i.e. including use of Radix-64 to convert UTF-8 to 7 bit ASCII in the signed file). For example, assuming the current working directory contains a business document `doc.json`, a signed document `signed_doc.txt` can be created using the GnuPG command line program like this:
+
+```bash
+gpg2 \
+ --output "signed_doc.txt" \
+ --clearsign "doc.json"
+```
 
 
 ### Identify hashing algorithm
+
  
 select sig_algorithm from approved list, e.g. SHA2 (?).
 
@@ -47,6 +62,12 @@ TODO:
 use sig_algorithm to create hash_of_signed_document
 
 bash example
+
+```bash
+openssl dgst -sha256 "signed_doc.txt" \
+ | cut -d'=' -f2 \ # remove leading text
+ | sed -e 's/^ //g' # remove leading whitespace
+```
 
 This is not the message hash. It is notarised to the blockchain then used by a trusted third party (e.g. Creditor) interested third parties to verify that a signed_document was actually sent.
 
@@ -75,9 +96,14 @@ Python example -> message.json
 
 ### Generate signature
 
-The `signature` part is created by a business system component trusted by the sender (with access to the sender's private key material). The signature is also used as a unique message id.
+The `signature` part is created by a business system component trusted by the sender (with access to the sender's private key material). The signature can also be used to uniquely identify the message contents.
 
-bash example -> message_sig.txt
+
+Assuming the current working directory contains the message (as message.json), the following 
+```bash
+gpg --output message.sig --sign message.json
+```
+bash example -> signature.sig
 
 
 ### Posting the message to the recipient TAP
@@ -86,13 +112,24 @@ Layered on top of HTTP Protocol:
 
  * MUST use HTTPS.
  * MUST use Content-Type: multipart/form-data. (application-x-www-form-urlencode is not appropriate, because URLENCODING cyphertext is problematic)
- * MAY use Content-Transfer-Encoding: base64 (what else? can it be implied)
+ * MAY use Content-Transfer-Encoding: base64 (what else? this might be moot)
  * MUST NOT rely on additional TAP-related information in HTTP headers
+
+Standards compliance:
+ * TODO: cite RFC for HTTPS
+ * TODO: cite RFC for multipart/form-data
 
 The message is sent to the recieving TAP using HTTP POST operation, with a `Content-Type: multipart/form-data` body. This body contains two parts, `message` and `signature`.
 
-python example, using message.json + message_sig.txt
+Assuming the current working directory contains the message (as message.json) and signature (as message.sig), the following curl command will post the message to the recipient TAP (replace `<TAP_URL>` with HTTPS URL discovered from the Service Metadata Publisher).
 
+```bash
+curl -X POST \
+ -H "Content-Type: multipart/form-data" \
+ -F "message=@message.json" \
+ -F "signature=@message.sig" \
+ <TAP_URL>
+```
 
 ## Receipt and Technical Acknowledgement
 
