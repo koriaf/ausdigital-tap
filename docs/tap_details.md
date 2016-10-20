@@ -77,7 +77,7 @@ openssl dgst -sha256 -out "signed_doc.hash"  "signed_doc.txt"
 
 The message does not contain plaintext of the business message (signed or otherwise). It contains the hash of the signed plaintext (as per above), and cyphertext of the plaintext message.
 
-The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate privte key of the sender. The public parts of these keypairs are discoverable using the appropriate SMP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be published in ASCII-Armoured form in the SMP.
+The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate private key of the sender. The public parts of these keypairs are discoverable using the appropriate SMP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be published in ASCII-Armoured form in the SMP.
 
 Use of mature and extensively scrutenised cryptography implementations is strongly encouraged. The following examples use GnuPG, anthough any compliant RFC4880 imlpementation could be used in an equivalent way.
 
@@ -94,7 +94,7 @@ With GnuPG, this is only necessary once. Subsequent messages to the same recipie
 
 (this should actually be in the SMP spec)
 
-Under RFC4880, exported public keys (such as `recipient.gpg` file above) MAY contain notation data pertaining to the owner of the keypair (TAP endpoint). This notation data contains a registered IETF namespace and a user namespace. The user namespace resembles an email address with a string, then the "@" character, and then a DNS name. where   When keys are used to represent individuals, this identifying information is usually name and email address.
+Under RFC4880, exported public keys (such as `recipient.gpg` file above) MAY contain notation data pertaining to the owner of the keypair (TAP endpoint). This notation data contains a registered IETF namespace and a user namespace. The user namespace resembles an email address with a string, then the "@" character, and then a DNS name. When keys are used to represent individuals, this identifying information is usually name and email address.
 
 Public Keys issues in the SMP MUST have a user namespace identifier that is unique to the published endpoint. The dns part of the user namespace is the DNS address of the SMP (and also the NAPTR record of the business discoverable via DCL). The string on the left of the "@" character should be a SHA256 hash of the endpoint URL, exactly as it is published in the SMP.
 
@@ -131,13 +131,36 @@ Assuming the current working directory contains:
 Then the following python script will create `message.json` file containing the cyphertext and associated metadata in json format.
 
 ```python
-# TODO: python script
-# 1. load cyphertext into variable
-# 2. load hash of signed message into variable
-# 3. ref into variable
-# 4. sender URN into variable
-# assemble variables into a dict
-# write dict to new file using json encoder
+import json
+
+def read_cyphertext(filename="cyphertext.gpg"):
+    return open(filename, 'r').read().strip()
+
+def read_hash(filename="signed_doc.hash"):
+    return open(filename, 'r').read().strip()
+
+def read_reference(filename="reference.txt"):
+    return open(filename, 'r').read().strip()
+
+def read_sender(filename="sender.txt"):
+    return open(filename, 'r').read().strip()
+
+def compose_message(filename="message.json", indent=4):
+    message = {
+        'cyphertext': read_cyphertext(),
+        'hash': read_hash(),
+        'reference': read_reference(),
+        'sender': read_sender(),
+    }
+    result_file = open(filename, 'w')
+    result_file.truncate()
+    result_file.write(
+        json.dumps(message, indent=indent)
+    )
+    result_file.write('\n')
+
+if __name__ == "__main__":
+    compose_message()
 ```
 
 
