@@ -77,9 +77,9 @@ openssl dgst -sha256 -out "signed_doc.hash"  "signed_doc.txt"
 
 The message does not contain plaintext of the business message (signed or otherwise). It contains the hash of the signed plaintext (as per above), and cyphertext of the plaintext message.
 
-The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate privte key of the sender. The public parts of these keypairs are discoverable using the appropriate SMP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be stored ASCII-Armoured form in the SMP.
+The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate privte key of the sender. The public parts of these keypairs are discoverable using the appropriate SMP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be published in ASCII-Armoured form in the SMP.
 
-Use of mature and extensively scrutenised cryptography implementations is strongly encouraged. The following examples use GnuPG, anthough any RFC4880 compliant imlpementation (or equivalent) could also be used.
+Use of mature and extensively scrutenised cryptography implementations is strongly encouraged. The following examples use GnuPG, anthough any compliant RFC4880 imlpementation could be used in an equivalent way.
 
 Assuming the recipient's public key is not already in the sender's GnuPG keyring, but is in the current working directory as `recipient.gpg`, it can be added to the sender's GnuPG keyring like this:
 
@@ -119,16 +119,26 @@ This will create a file `cyphertext.gpg` in the current working directory, which
 
 The `message` part is a mixture of cleartext metadata (used by TAPs) and encyphered payload (used by trusted business system components). The cleartext metadata does not contain sensitive business information, wheras access to the business-sensitive information within the payload is not necessary for participating in the TAP protocol.
 
+The message part does not need to be in any kind of canonical form. It MUST be a valid json document.
 
-reference_string = ...
+Assuming the current working directory contains:
 
-no need for canonical form: valid json document.
+ * `cyphertext.gpg`, containing encrypted signed business document in ASCII-Armour format
+ * `signed_doc.hash`, containing digest of the signed business document
+ * `reference.txt`, containing arbitrary string related to the document
+ * `sender.txt`, containing the URN of the business identifier of the sender
 
-TODO:
+Then the following python script will create `message.json` file containing the cyphertext and associated metadata in json format.
 
- * footnote about reference strings: can be anything. Routing Key example. Job Code example, etc.
-
-Python example -> message.json
+```python
+# TODO: python script
+# 1. load cyphertext into variable
+# 2. load hash of signed message into variable
+# 3. ref into variable
+# 4. sender URN into variable
+# assemble variables into a dict
+# write dict to new file using json encoder
+```
 
 
 ### Generate signature
@@ -139,7 +149,7 @@ The `signature` part is created by a business system component trusted by the se
 Assuming the current working directory contains the message (as `message.json`), the following command will create a signature `message.sig`:
 
 ```bash
-gpg --output message.sig --sign message.json
+gpg2 --output message.sig --sign message.json
 ```
 
 
@@ -153,7 +163,7 @@ Layered on top of HTTP Protocol:
  * MAY explicitly declare `Content-Transfer-Encoding: base64`
  * MUST NOT rely on additional TAP-related information in HTTP headers, such as message or conversation identifiers.
 
-The message is sent to the recieving TAP using HTTP POST operation, with a `Content-Type: multipart/form-data` body. This body contains two parts, `message` and `signature`.
+The message is sent to the recieving TAP using HTTP POST operation. The posted body contains two parts, named `message` and `signature`.
 
 Assuming the current working directory contains the message (as message.json) and signature (as message.sig), the following curl command will post the message to the recipient TAP (replace `<TAP_URL>` with HTTPS URL discovered from the Service Metadata Publisher).
 
@@ -169,4 +179,9 @@ curl -X POST \
 
 When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: text/json`, containing a HATEOS-style list of callback URLs.
 
-TODO: example response.
+TODO:
+
+ * example response.
+ * explain callback URLs
+ * explain callback semantic URLs
+ * define error responses.
