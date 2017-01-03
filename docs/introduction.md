@@ -53,18 +53,3 @@ When a valid message is received, the TAP issues an HTTP 200 status and returns 
 ![Illustration of HTTP 200 response](./tap_overview_response.png "Response 200 OK")
 
 See the TAP Protocol Details chapter for more information.
-
-
-## TAP Gateway (TAPGW) Protocol Overview
-
-If a trusted business system is persistently connected to the internet and natively supports the TAP protocol, then it has no need for TAPGW interface, either as a client or server. Gateways are not necessary in the TAP protocol, the TAPGW sub-protocol is described as an optional extension to the TAP protocol.
-
-There are various reasons why a business system architect may want a structural separation between their trusted components (e.g. ledger service, ERP system, etc) and their externaly facing components, such as a TAP Gateway. These include performance, reliability and security objectives, as well as a desire to focus on features that differentiate their system while outsourcing generic functionality to services with low-cost utility characteristics. The TAPGW sub-protocol is designed to ensure Gateway services are generic and interchangable commodities.
-
-A TAP Gateway service is an avaialbility mediator (allowing trusted business system components to have intermittent connectivity, and/or to sit behind a firewall). It is however more than a simple asynchronous proxy (store-and-forward service); aditionally, it performs functions such as message validation, logging, access control, and protocol callbacks (including to Notary services).
-
-Cryptography is used to prevent TAP Gateways from being able to inspect or manipulate the content of business messages. A TAP Gateway is not custodian of any business key material, it is only trusted to reliably send and receive messages. Message signing and encryption/decryption is performed by systems behind TAPs. The TAP is unable to verify signatures that have been encrypted, but can verify signatures that are not encrypted.
-
-Notarisation to the blockchain makes it possible for the business system to audit the reliability of any TAP Gateway that it uses.
-
-See the TAP Gateway Protocol Details chapter for more information.
