@@ -17,9 +17,9 @@ protocol for trusted business system components (e.g. ledger services) to intera
 ## Dependencies
 
 The messages sent between TAPs carry semantic payloads. Currently, these include
-[billing-semantics](https://billing-semantics.readthedocs.io/).
+[billing-semantics](https://ausdigital-bill.readthedocs.io/).
 That specification is maintained independently in the
-[https://github.com/ausdigital/billing-semantics](https://github.com/ausdigital/billing-semantics)
+[https://github.com/ausdigital/ausdigital-bill](https://github.com/ausdigital/ausdigital-bill)
 repository. Future semantic payloads may be supported without change to the protocol.
 
 All TAPs depend on the following Services:
