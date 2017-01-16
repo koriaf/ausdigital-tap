@@ -14,7 +14,7 @@ are optional and minimally trusted.
 
 This specification aims to support the Australian Digital Business Council
 [eInvoicing initiative](https://ausdigital.github.io), and is under active development
-at [https://github.com/ausdigital/access-point](https://github.com/ausdigital/access-point).
+at [https://github.com/ausdigital/ausdigital-tap](https://github.com/ausdigital/ausdigital-tap).
 
 
 ## Licence
