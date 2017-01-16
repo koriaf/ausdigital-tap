@@ -16,20 +16,20 @@ protocol for trusted business system components (e.g. ledger services) to intera
 
 ## Dependencies
 
-The messages send between TAPs carry payloads that encode
+The messages sent between TAPs carry semantic payloads. Currently, these include
 [billing-semantics](https://billing-semantics.readthedocs.io/).
-This specification is maintained independently in the
+That specification is maintained independently in the
 [https://github.com/ausdigital/billing-semantics](https://github.com/ausdigital/billing-semantics)
 repository. Future semantic payloads may be supported without change to the protocol.
 
 All TAPs depend on the following Services:
 
- * [Capability locator (DCL)](http://capability-locator.readthedocs.io/)
- * [Metadata publisher (SMP)](http://metadata-publisher.readthedocs.io/)
- * [Notary (NTY)](http://notary.readthedocs.io)
+ * [Digital Capability locator (DCL)](http://ausdigital-dcl.readthedocs.io/)
+ * [Digital Capability Publisher (DCP)](http://ausdigital-dcp.readthedocs.io/)
+ * [Notary (NTY)](http://ausdigital-ntry.readthedocs.io)
 
 TAPGW providers also depend on the
-[Identity Provider (IDP)](http://identity-provider.readthedocs.io/). TAPs do not need to
+[Identity Provider (IDP)](http://iausdigital-idp.readthedocs.io/). TAPs do not need to
 authenticate when they interact with each other, due to use of well known cryprograpic keys
 and service endpoint addresses.
 
