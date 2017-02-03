@@ -9,11 +9,11 @@ The TAP Protocol is a very simple REST API. One business sends a message directl
 
 ## Sending a business message
 
-Pre-requsites:
+Pre-requisites:
 
  * Sender knows their own business identity, and has access to their own private key.
  * Sender knows the recipient business identity (e.g. ABN).
- * Sender knows recipient Digital Capability Publisher (DCP) address, which can be discovered from business identity using Digital Capability Lookup (DCL).
+ * Sender knows recipient Digital Capability Publisher (DCP) address, which can be discovered from business identity using ausdigital-dcl/1.
  * Sender knows appropriate TAP endpoint address for the intended message type (discovered via DCP lookup).
  * Sender knows appropriate recipient public key (discovered via DCP lookup).
  * The sender has a valid cleartext (not encrypted) business document to send (e.g. an invoice), encoding the appropriate business semantics (e.g. UBL2.0) in an appropriate format (e.g. json).
@@ -79,7 +79,7 @@ The message does not contain plaintext of the business message (signed or otherw
 
 The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate private key of the sender. The public parts of these keypairs are discoverable using the appropriate DCP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be published in ASCII-Armoured form in the DCP.
 
-Use of mature and extensively scrutenised cryptography implementations is strongly encouraged. The following examples use GnuPG, anthough any compliant RFC4880 imlpementation could be used in an equivalent way.
+Use of mature and extensively scrutinised cryptography implementations is strongly encouraged. The following examples use GnuPG, although any compliant RFC4880 implementation could be used in an equivalent way.
 
 Assuming the recipient's public key is not already in the sender's GnuPG keyring, but is in the current working directory as `recipient.gpg`, it can be added to the sender's GnuPG keyring like this:
 
@@ -117,7 +117,7 @@ This will create a file `cyphertext.gpg` in the current working directory, which
 
 ### Compose Message
 
-The `message` part is a mixture of cleartext metadata (used by TAPs) and encyphered payload (used by trusted business system components). The cleartext metadata does not contain sensitive business information, wheras access to the business-sensitive information within the payload is not necessary for participating in the TAP protocol.
+The `message` part is a mixture of cleartext metadata (used by TAPs) and enciphered payload (used by trusted business system components). The cleartext metadata does not contain sensitive business information, whereas access to the business-sensitive information within the payload is not necessary for participating in the TAP protocol.
 
 The message part does not need to be in any kind of canonical form. It MUST be a valid json document.
 
@@ -186,7 +186,7 @@ Layered on top of HTTP Protocol:
  * MAY explicitly declare `Content-Transfer-Encoding: base64`
  * MUST NOT rely on additional TAP-related information in HTTP headers, such as message or conversation identifiers.
 
-The message is sent to the recieving TAP using HTTP POST operation. The posted body contains two parts, named `message` and `signature`.
+The message is sent to the receiving TAP using HTTP POST operation. The posted body contains two parts, named `message` and `signature`.
 
 Assuming the current working directory contains the message (as message.json) and signature (as message.sig), the following curl command will post the message to the recipient TAP (replace `<TAP_URL>` with HTTPS URL discovered from the Service Metadata Publisher).
 
