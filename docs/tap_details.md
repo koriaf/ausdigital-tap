@@ -13,9 +13,9 @@ Pre-requsites:
 
  * Sender knows their own business identity, and has access to their own private key.
  * Sender knows the recipient business identity (e.g. ABN).
- * Sender knows recipient Service Metadata Publisher (SMP) address, which can be discovered from business identity using Digital Capability Lookup (DCL).
- * Sender knows appropriate TAP endpoint address for the intended message type (discovered via SMP lookup).
- * Sender knows appropriate recipient public key (discovered via SMP lookup).
+ * Sender knows recipient Digital Capability Publisher (DCP) address, which can be discovered from business identity using Digital Capability Lookup (DCL).
+ * Sender knows appropriate TAP endpoint address for the intended message type (discovered via DCP lookup).
+ * Sender knows appropriate recipient public key (discovered via DCP lookup).
  * The sender has a valid cleartext (not encrypted) business document to send (e.g. an invoice), encoding the appropriate business semantics (e.g. UBL2.0) in an appropriate format (e.g. json).
 
 The process is:
@@ -77,7 +77,7 @@ openssl dgst -sha256 -out "signed_doc.hash"  "signed_doc.txt"
 
 The message does not contain plaintext of the business message (signed or otherwise). It contains the hash of the signed plaintext (as per above), and cyphertext of the plaintext message.
 
-The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate private key of the sender. The public parts of these keypairs are discoverable using the appropriate SMP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be published in ASCII-Armoured form in the SMP.
+The cyphertext is created using public key cryptography, using the appropriate public key for the recipient business endpoint, and the appropriate private key of the sender. The public parts of these keypairs are discoverable using the appropriate DCP for each business identifier URNs, which is discoverable using the global DCL. Public keys MUST be published in ASCII-Armoured form in the DCP.
 
 Use of mature and extensively scrutenised cryptography implementations is strongly encouraged. The following examples use GnuPG, anthough any compliant RFC4880 imlpementation could be used in an equivalent way.
 
@@ -92,11 +92,11 @@ With GnuPG, this is only necessary once. Subsequent messages to the same recipie
 
 #### Note about published keys
 
-(this should actually be in the SMP spec)
+(this should actually be in the DCP spec)
 
 Under RFC4880, exported public keys (such as `recipient.gpg` file above) MAY contain notation data pertaining to the owner of the keypair (TAP endpoint). This notation data contains a registered IETF namespace and a user namespace. The user namespace resembles an email address with a string, then the "@" character, and then a DNS name. When keys are used to represent individuals, this identifying information is usually name and email address.
 
-Public Keys issues in the SMP MUST have a user namespace identifier that is unique to the published endpoint. The dns part of the user namespace is the DNS address of the SMP (and also the NAPTR record of the business discoverable via DCL). The string on the left of the "@" character should be a SHA256 hash of the endpoint URL, exactly as it is published in the SMP.
+Public Keys issues in the DCP MUST have a user namespace identifier that is unique to the published endpoint. The dns part of the user namespace is the DNS address of the DCP (and also the NAPTR record of the business discoverable via DCL). The string on the left of the "@" character should be a SHA256 hash of the endpoint URL, exactly as it is published in the DCP.
 
 This user namespace identifier of the public key is used to access the key from a keyring.
 
