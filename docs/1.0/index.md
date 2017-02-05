@@ -29,7 +29,7 @@ The components of the framework are used in a four-corner model (see Figure 2: F
 
 Figure 2: Four Corner Model
 
-See the complete [Access Point Implementation Guide](./https://github.com/ausdigital/ausdigital-syn-v1/blob/master/Access_Point_Implementation_Guide_v1.0.pdf) for further details.
+See the complete [Access Point Implementation Guide](./Access_Point_Implementation_Guide_v1.0.pdf) for further details.
 
 ## Licence
 
