@@ -1,3 +1,116 @@
+ * Spec ID: ausdigital.org/ausdigital-tap/2.0
+ * ![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
+ * Editor: Chris Gough
+ * Contributors: Steve Capell
+
+## AusDigtial Transaction Access Point (TAP) 2.0 Specification
+
+## Glossary:
+
+phrase | Definition
+------------ | -------------
+ausdigital-tap/2 | Version 2 of the [AusDigtial](http://ausdigital.org) [TAP](http://ausdigital-tap.readthedocs.io/) specification
+ausdigital-tapgw/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [TAPGW](http://ausdigital-tap-gw.readthedocs.io/) specification
+ausdigital-bill/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [BILL](http://ausdigital-bill.readthedocs.io/) specification
+ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCL](http://ausdigital-dcl.readthedocs.io/) specification
+ausdigital-dcp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCP](http://ausdigital-dcp.readthedocs.io/) specification
+ausdigital-nry/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [NRY](http://ausdigital-nry.readthedocs.io/) specification
+ausdigital-idp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [IDP](http://ausdigital-idp.readthedocs.io/) specification
+
+This document describes a protocol for exchanging formal documents (such as invoices)
+between businesses. TAP is a secure, decentralised, peer to peer architecture where gateways
+are optional and minimally trusted.
+
+This specification aims to support the Australian Digital Business Council
+[eInvoicing initiative](https://ausdigital.org), and is under active development
+at [https://github.com/ausdigital/ausdigital-tap](https://github.com/ausdigital/ausdigital-tap).
+
+
+## Licence
+
+Copyright (c) 2016 the Editor and Contributors. All rights reserved.
+
+This Specification is free software; you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software Foundation; 
+either version 3 of the License, or (at your option) any later version.
+
+This Specification is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program;
+if not, see [http://www.gnu.org/licenses](http://www.gnu.org/licenses).
+
+
+## Change Process
+
+This document is governed by the [2/COSS](http://rfc.unprotocols.org/spec:2/COSS/) (COSS).
+
+
+## Language
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
+"RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
+RFC 2119.
+
+
+# Introduction
+
+The Transaction Access Point (TAP) is a persistently connected "peer" capable of sending and
+receiving business documents, such as invoices. It interacts with other TAPs following the
+protocol specified in this document. The TAP is an autonomous agent in business-to-business
+document exchange.
+
+A TAP might be provided by a commercial ledger service, or maintained as part of an
+independent business system. 
+
+The TAP specification has two parts. The main part (ausdigital-tap/2) defines the protocol all peers
+must follow (and interfaces they must provide) to send and receive business documents. The
+second part is an optional gateway specification (ausdigital-tapgw/1), which defines a client-server
+protocol for trusted business system components (e.g. ledger services) to interact with independent TAP service providers in a generic way.
+
+
+## Dependencies
+
+The messages sent between TAPs carry semantic payloads. Currently, these include
+ausdigital-bill/1.
+That specification is maintained independently in the
+[https://github.com/ausdigital/ausdigital-bill](https://github.com/ausdigital/ausdigital-bill)
+repository. Future semantic payloads may be supported without change to the protocol.
+
+All TAPs depend on the following Services:
+
+ * ausdigital-dcl/1 
+ * ausdigital-dcp/1 
+ * ausdigital-nry/1 
+
+TAPGW providers also depend on the
+ausdigital-idp/1. TAPs do not need to
+authenticate when they interact with each other, due to use of well known cryprograpic keys
+and service endpoint addresses.
+
+
+## TAP Protocol Overview
+
+In this protocol, a Transaction Access Point (TAP) is a business system component that sends and receives business messages. The TAP Protocol describes how one TAP sends the message, and how the other TAP responds when a message is received.
+
+The message is sent to the receiving TAP using HTTP POST operation, with a `Content-Type: multipart/form-data` body. This body contains two parts, `message` and `signature`.
+
+The `message` part is a mixture of cleartext metadata (used by TAPs) and enciphered payload (used by trusted business system components). The cleartext metadata does not contain sensitive business information, whereas access to the business-sensitive information within the payload is not necessary for participating in the TAP protocol.
+
+The `signature` part is created by a business system component trusted by the sender (with access to the sender's private key material). The signature can be used as a unique identifier of the message contents (e.g. transmitted document id).
+
+![Illustration of POST body](./tap_overview_post.png "Business document sent to TAP")
+
+Receiving TAPs may also use the signature as a filter (messages with invalid signatures MAY be dropped by receiving TAPs, rather than delivered). This allows TAPs to buffer trusted components from anonymous denial of service attacks.
+
+When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: text/json`, containing a HATEOS-style list of callback URLs.
+
+![Illustration of HTTP 200 response](./tap_overview_response.png "Response 200 OK")
+
+See the TAP Protocol Details chapter for more information.
+
+
 # TAP Protocol Details
 
 The TAP Protocol is a very simple REST API. One business sends a message directly to another business' TAP endpoint (discovered via the SMP):
@@ -208,3 +321,41 @@ TODO:
  * explain callback URLs
  * explain callback semantic URLs
  * define error responses.
+
+ 
+# Security
+
+This chapter is TODO.
+
+
+Deployment Model and Operator Experience
+
+
+Protocol Elements
+
+ * HTTPS Requests
+ * ...
+ * Errors
+ * Replay protection ?
+
+
+Identity Management
+
+ * Resources
+ * Directory
+
+
+Security Considerations
+
+ * Threat model
+ * LAPGW: Integrity of Authorizations
+ * LAPGW: Preventing Authorization Hijacking
+ * Denial-of-Service Considerations
+ * ...other policy/controls
+
+
+References
+
+ * Normative References
+ * Informative References
+ 

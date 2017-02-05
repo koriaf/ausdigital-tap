@@ -1,9 +1,0 @@
-{
-  "swagger" : "2.0",
-  "info" : {
-    "version" : "1.0",
-    "title" : "Transaction Access Point (TAP)",
-    "description" : "The \"Transaction Access Point\" (TAP) is an open standard specification defining RESTful exchange of e-business documents between ledger systems. See http://ausdigital.org/ for more information."
-  },
-  "paths" : { }
-}
