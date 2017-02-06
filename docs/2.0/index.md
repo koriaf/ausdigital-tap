@@ -1,7 +1,7 @@
  * Spec ID: ausdigital.org/ausdigital-tap/2.0
  * ![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
- * Editor: Chris Gough
- * Contributors: Steve Capell
+ * Editor: [Chris Gough](mailto:christopher.d.gough@gmail.com)
+ * Contributors: [Steven Capell](mailto:steven.capell@gosource.com.au)
 
 # AusDigtial Transaction Access Point (TAP) 2.0 Specification
 
@@ -381,6 +381,6 @@ References
 
  * AusDigital Transaction Access Point Implementation Guide (v1.0, available [here](https://github.com/ausdigital/ausdigital-tap/blob/master/docs/1.0/Digital_Capability_Publisher_Implementation_Guide_v1.0.pdf)), which provides background to the [AusDigital](http://ausdigital.org) community process.
  * [GitHub issues](https://github.com/ausdigital/ausdigital-tap/issues/) for collaborating on the development of the TAP.
- * A reference [TAP service](https://tap.testpoint.io/) (for testing and development purposes).
+ * A reference [TAP service](http://testpoint.io/tap) (for testing and development purposes).
  * Free, Open-Source Software [TAP implementation](https://github.com/test-point/testpoint-tap).
  * An automated [TAP test suite](https://github.com/test-point/testpoint-tap).
