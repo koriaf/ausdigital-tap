@@ -3,27 +3,44 @@
  * Editor: Chris Gough
  * Contributors: Steve Capell
 
-## AusDigtial Transaction Access Point (TAP) 2.0 Specification
+# AusDigtial Transaction Access Point (TAP) 2.0 Specification
+
+## Introduction
+
+This document describes a protocol for exchanging formal documents (such as invoices)
+between businesses. TAP is a secure, decentralised, peer to peer architecture where gateways
+are optional and minimally trusted.
+
+## Goals
+
+The primary goal of the Transaction Access Point (TAP) 2.0 Specification is to TBA.
+
+The Transaction Access Point (TAP) 2.0 Specification defines TBA.
+
+
+## Status
+
+This spec is an early draft for consuiltation.
+
+This specification aims to support the Australian Digital Business Council
+[eInvoicing initiative](http://ausdigital.org), and is under active
+development at
+[https://github.com/ausdigital/ausdigital-tap](https://github.com/ausdigital/ausdigital-tap).
+
+Comments and feedback are encouraged and welcome. Pull requests with improvements are welcome too.
+
 
 ## Glossary:
 
 phrase | Definition
 ------------ | -------------
 ausdigital-tap/2 | Version 2 of the [AusDigtial](http://ausdigital.org) [TAP](http://ausdigital-tap.readthedocs.io/) specification
-ausdigital-tapgw/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [TAPGW](http://ausdigital-tap-gw.readthedocs.io/) specification
+ausdigital-tapgw/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [TAP-GW](http://ausdigital-tap-gw.readthedocs.io/) specification
 ausdigital-bill/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [BILL](http://ausdigital-bill.readthedocs.io/) specification
 ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCL](http://ausdigital-dcl.readthedocs.io/) specification
 ausdigital-dcp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCP](http://ausdigital-dcp.readthedocs.io/) specification
 ausdigital-nry/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [NRY](http://ausdigital-nry.readthedocs.io/) specification
 ausdigital-idp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [IDP](http://ausdigital-idp.readthedocs.io/) specification
-
-This document describes a protocol for exchanging formal documents (such as invoices)
-between businesses. TAP is a secure, decentralised, peer to peer architecture where gateways
-are optional and minimally trusted.
-
-This specification aims to support the Australian Digital Business Council
-[eInvoicing initiative](https://ausdigital.org), and is under active development
-at [https://github.com/ausdigital/ausdigital-tap](https://github.com/ausdigital/ausdigital-tap).
 
 
 ## Licence
@@ -359,3 +376,11 @@ References
  * Normative References
  * Informative References
  
+
+# Related Material
+
+ * AusDigital Transaction Access Point Implementation Guide (v1.0, available [here](https://github.com/ausdigital/ausdigital-tap/blob/master/docs/1.0/Digital_Capability_Publisher_Implementation_Guide_v1.0.pdf)), which provides background to the [AusDigital](http://ausdigital.org) community process.
+ * [GitHub issues](https://github.com/ausdigital/ausdigital-tap/issues/) for collaborating on the development of the TAP.
+ * A reference [TAP service](https://tap.testpoint.io/) (for testing and development purposes).
+ * Free, Open-Source Software [TAP implementation](https://github.com/test-point/testpoint-tap).
+ * An automated [TAP test suite](https://github.com/test-point/testpoint-tap).

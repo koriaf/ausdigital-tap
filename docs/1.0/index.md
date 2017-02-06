@@ -5,7 +5,61 @@
 
 ## AusDigital Transaction Access Point (TAP) 1.0 Specification
 
+## Introduction
+
 This document describes a protocol for exchanging formal documents (such as invoices) between businesses. TAP is a secure, decentralised, peer to peer architecture where gateways are optional and minimally trusted.
+
+## Goals
+
+The primary goal of the Transaction Access Point (TAP) 1.0 Specification is to TBA.
+
+The Transaction Access Point (TAP) 1.0 Specification defines TBA.
+
+
+## Status
+
+This spec is an early draft for consuiltation.
+
+This specification aims to support the Australian Digital Business Council
+[eInvoicing initiative](http://ausdigital.org), and is under active
+development at
+[https://github.com/ausdigital/ausdigital-tap](https://github.com/ausdigital/ausdigital-tap).
+
+Comments and feedback are encouraged and welcome. Pull requests with improvements are welcome too.
+
+
+## Glossary
+
+Phrase | Definition
+------------ | -------------
+ausdigital-tap/1 | This specification.
+ausdigital-dcl/1 | Version 1 of the AusDigtial [Digital Capability Locator (DCL)](https://ausdigital-dcl.readthedocs.io) specification
+ausdigital-idp/1 | Version 1 of the AusDigital [Identity Provider (IDP)](https://ausdigital-idp.readthedocs.io) specification.
+ausdigital-dcp/1 | Version 1 of the AusDigital [Digital Capability Publisher (DCP)](http://ausdigital.org/transaction-access-point) specification.
+ausdigital-tap/2 | Version 2 of the AusDigital [Transaction Access Point(TAP)](http://ausdigital.org/transaction-access-point) specification.
+ausdigital-nry/1 | Version 1 of the AusDigital [Notary (NRY)](http://ausdigital.org/notary/) specification.
+
+The TAP service depends on TBA and TBA.
+
+Other TBA and TBA services both depend on the TAP service.
+
+## Licence
+
+Copyright (c) 2016 the Editor and Contributors. All rights reserved.
+
+This work is licensed under a Creative Commons Attribution 4.0 International License.
+
+## Change Process
+
+This document is governed by the [2/COSS](http://rfc.unprotocols.org/spec:2/COSS/) (COSS).
+
+
+## Language
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
+"RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
+RFC 2119.
+
 
 ## Overview
 
@@ -31,19 +85,10 @@ Figure 2: Four Corner Model
 
 See the complete [Access Point Implementation Guide](./Access_Point_Implementation_Guide_v1.0.pdf) for further details.
 
-## Licence
+# Related Material
 
-Copyright (c) 2016 the Editor and Contributors. All rights reserved.
-
-This work is licensed under a Creative Commons Attribution 4.0 International License.
-
-## Change Process
-
-This document is governed by the [2/COSS](http://rfc.unprotocols.org/spec:2/COSS/) (COSS).
-
-
-## Language
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-"RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
-RFC 2119.
+ * AusDigital Transaction Access Point Implementation Guide (v1.0, available [here](https://github.com/ausdigital/ausdigital-tap/blob/master/docs/1.0/Digital_Capability_Publisher_Implementation_Guide_v1.0.pdf)), which provides background to the [AusDigital](http://ausdigital.org) community process.
+ * [GitHub issues](https://github.com/ausdigital/ausdigital-tap/issues/) for collaborating on the development of the TAP.
+ * A reference [TAP service](https://tap.testpoint.io/) (for testing and development purposes).
+ * Free, Open-Source Software [TAP implementation](https://github.com/test-point/testpoint-tap).
+ * An automated [TAP test suite](https://github.com/test-point/testpoint-tap).

@@ -1,3 +1,3 @@
-# AusDigital Transaction Access Point Specification
- * [Version 1.0](/docs/1.0/index.md)
- * [Version 2.0](/docs/2.0/index.md)
+# AusDigital Transaction Access Point (TAP) Specification
+ * [Version 1.0](/1.0)
+ * [Version 2.0](/2.0)
