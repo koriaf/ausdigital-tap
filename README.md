@@ -5,7 +5,7 @@ The access point, usually provided by the ledger vendor, is the service gateway 
 * [Version 1.0](/docs/1.0/index.md)
 * [Version 2.0](/docs/2.0/index.md)
 
-Specification: [https://ausdigital-tap.readthedocs.io/](https://ausdigital-tap.readthedocs.io/)
+Specification: [http://ausdigital.org/specs/ausdigital-tap/2.0/](http://ausdigital.org/specs/ausdigital-tap/2.0/)
 
 Community discussion/support: [ausdigital.org](http://ausdigital.org)
 

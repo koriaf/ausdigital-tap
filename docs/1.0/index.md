@@ -1,9 +1,10 @@
- * Spec ID: ausdigital.org/ausdigital-tap/1.0
- * ![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
- * Editor: the Digital Business Council (Council)
- * Contributors: 
-
-## AusDigital Transaction Access Point (TAP) 1.0 Specification
+---
+title: "AusDigital Transaction Access Point (TAP) 1.0 Specification"
+specID: "ausdigital-tap/1"
+status: "![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)"
+editors: "Digital Business Council (Council)"
+contributors: 
+---
 
 ## Introduction
 
@@ -33,8 +34,8 @@ Comments and feedback are encouraged and welcome. Pull requests with improvement
 Phrase | Definition
 ------------ | -------------
 ausdigital-tap/1 | This specification.
-ausdigital-dcl/1 | Version 1 of the AusDigtial [Digital Capability Locator (DCL)](https://ausdigital-dcl.readthedocs.io) specification
-ausdigital-idp/1 | Version 1 of the AusDigital [Identity Provider (IDP)](https://ausdigital-idp.readthedocs.io) specification.
+ausdigital-dcl/1 | Version 1 of the AusDigtial [Digital Capability Locator (DCL)](http://ausdigital.org/specs/ausdigital-dcl/1.0) specification
+ausdigital-idp/1 | Version 1 of the AusDigital [Identity Provider (IDP)](http://ausdigital.org/specs/ausdigital-idp/1.0) specification.
 ausdigital-dcp/1 | Version 1 of the AusDigital [Digital Capability Publisher (DCP)](http://ausdigital.org/transaction-access-point) specification.
 ausdigital-tap/2 | Version 2 of the AusDigital [Transaction Access Point(TAP)](http://ausdigital.org/transaction-access-point) specification.
 ausdigital-nry/1 | Version 1 of the AusDigital [Notary (NRY)](http://ausdigital.org/notary/) specification.

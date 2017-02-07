@@ -1,9 +1,10 @@
- * Spec ID: ausdigital.org/ausdigital-tap/2.0
- * ![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
- * Editor: [Chris Gough](mailto:christopher.d.gough@gmail.com)
- * Contributors: [Steven Capell](mailto:steven.capell@gosource.com.au)
-
-# AusDigtial Transaction Access Point (TAP) 2.0 Specification
+---
+title: "AusDigtial Transaction Access Point (TAP) 2.0 Specification"
+specID: "ausdigital-tap/2"
+status: "![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)"
+editors: "[Chris Gough](mailto:christopher.d.gough@gmail.com)"
+contributors: "[Steven Capell](mailto:steven.capell@gosource.com.au)"
+---
 
 ## Introduction
 
@@ -34,13 +35,13 @@ Comments and feedback are encouraged and welcome. Pull requests with improvement
 
 phrase | Definition
 ------------ | -------------
-ausdigital-tap/2 | Version 2 of the [AusDigtial](http://ausdigital.org) [TAP](http://ausdigital-tap.readthedocs.io/) specification
-ausdigital-tapgw/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [TAP-GW](http://ausdigital-tap-gw.readthedocs.io/) specification
-ausdigital-bill/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [BILL](http://ausdigital-bill.readthedocs.io/) specification
+ausdigital-tap/2 | Version 2 of the [AusDigtial](http://ausdigital.org) [TAP](http://ausdigital.org/specs/ausdigital-tap/2.0/) specification
+ausdigital-tapgw/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [TAP-GW](http://ausdigital.org/specs/ausdigital-tap-gw/1.0/) specification
+ausdigital-bill/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [BILL](http://ausdigital.org/specs/ausdigital-bill/1.0/) specification
 ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCL](http://ausdigital-dcl.readthedocs.io/) specification
-ausdigital-dcp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCP](http://ausdigital-dcp.readthedocs.io/) specification
-ausdigital-nry/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [NRY](http://ausdigital-nry.readthedocs.io/) specification
-ausdigital-idp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [IDP](http://ausdigital-idp.readthedocs.io/) specification
+ausdigital-dcp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [DCP](http://ausdigital.org/specs/ausdigital-dcp/1.0) specification
+ausdigital-nry/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [NRY](http://ausdigital.org/specs/ausdigital-nry/1.0/) specification
+ausdigital-idp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [IDP](http://ausdigital.org/specs/ausdigital-idp/1.0/) specification
 
 
 ## Licence
@@ -160,7 +161,7 @@ The process is:
 
 ### Sign the Business Document
 
-The TAP protocol MAY be used to transport any business message in any format. It MAY be used to transport messages compliant with billing-semantics. Messages SHOULD be formatted as XML or JSON and UTF-8 encoded.
+The TAP protocol MAY be used to transport any business message in any format. It MAY be used to transport messages compliant with Billing Semantics. Messages SHOULD be formatted as XML or JSON and UTF-8 encoded.
 
 Message signing is interpreted in the sense used by the OpenPGP standard (RFC4880), however strict compliance would involve 3DES algorithm which is not supported. Approved signing algorithms are those determined `--safe` by the *modern* (Eliptic Curve Cryptography compatible) distribution of GnuPG. This is version 2.1.15 at the time of writing, but any stable release at or above v2.1.15 is appropriate.
 
