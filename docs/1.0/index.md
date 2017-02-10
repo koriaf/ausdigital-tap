@@ -71,6 +71,7 @@ The Access Point Implementation Guide defines the standards for delivering and r
  * Digital Capability Publisher: A service for Participants to store details of their capabilities, and includes what scenarios they can process, the data formats they support and the delivery address for their eInvoices. (Digital Business Council, 2016b); and
  * Electronic Business Documents: A digital representation of a business document, e.g. an eInvoice.
 
+
 ![Figure 1: Context of Access Points within the Interoperability Framework](./tap_business_context_diagram.png "Figure 1: Context of Access Points within the Interoperability Framework")
 
 Figure 1: Context of Access Points within the Interoperability Framework
