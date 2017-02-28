@@ -223,16 +223,6 @@ With GnuPG, this is only necessary once. Subsequent messages to the same recipie
 
 #### Note about published keys
 
-(this should actually be in the DCP spec)
-
-Under RFC4880, exported public keys (such as `recipient.gpg` file above) MAY contain notation data pertaining to the owner of the keypair (TAP endpoint). This notation data contains a registered IETF namespace and a user namespace. The user namespace resembles an email address with a string, then the "@" character, and then a DNS name. When keys are used to represent individuals, this identifying information is usually name and email address.
-
-Public Keys issues in the DCP MUST have a user namespace identifier that is unique to the published endpoint. The dns part of the user namespace is the DNS address of the DCP (and also the NAPTR record of the business discoverable via DCL). The string on the left of the "@" character should be a SHA256 hash of the endpoint URL, exactly as it is published in the DCP.
-
-This user namespace identifier of the public key is used to access the key from a keyring.
-
-(end of note about public keys)
-
 Once the recipient's key has been added to the sender's keyring, and assuming the current working directory contains a signed document `signed_doc.txt`, and the user namespace identifier of the recipient public key is `91f68ffafa1288ad55cb3e61e937870fb5598cc098e125fe29412ab3047f15e1@smp.testpoint.io` then cyphertext of signed business document can be created with:
 
 ```
