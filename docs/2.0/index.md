@@ -122,9 +122,20 @@ The `signature` part is created by a business system component trusted by the se
 
 Receiving TAPs may also use the signature as a filter (messages with invalid signatures MAY be dropped by receiving TAPs, rather than delivered). This allows TAPs to buffer trusted components from anonymous denial of service attacks.
 
-When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: text/json`, containing a HATEOS-style list of callback URLs.
+When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: application/json`, containing a HATEOS-style list of callback URLs.
 
-![Illustration of HTTP 200 response](./tap_overview_response.png "Response 200 OK")
+```
+{
+  "data": {
+    "type": "TapMessage",
+    "id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXX",
+    "attributes": {
+        "uuid": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXX",
+        "status": "in_transit"
+    }
+  }
+}
+```
 
 See the TAP Protocol Details chapter for more information.
 
@@ -336,14 +347,13 @@ curl -X POST \
 
 ## Receipt and Technical Acknowledgement
 
-When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: text/json`, containing a HATEOS-style list of callback URLs.
+When a valid message is received, the TAP issues an HTTP 200 status and returns a response body with `Content-Type: application/json`, containing a HATEOS-style list of callback URLs.
+Check the [API](http://ausdigital.org/specs/ausdigital-tap/2.0/api)  for possible error response.
 
 TODO:
 
- * example response.
  * explain callback URLs
  * explain callback semantic URLs
- * define error responses.
  
 
 # Related Material
