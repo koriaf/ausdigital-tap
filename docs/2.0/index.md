@@ -131,7 +131,7 @@ See the TAP Protocol Details chapter for more information.
 
 # TAP Protocol Details
 
-The TAP Protocol is a very simple REST API. One business sends a message directly to another business' TAP endpoint (discovered via the SMP):
+The TAP Protocol is a very simple REST API. One business sends a message directly to another business' TAP endpoint (discovered via the DCP):
 
  * The sender uses the HTTP POST verb (over HTTPS) to send the signed message to a TAP.
  * The TAP replies with a HATEOS-style list of callback URLs.
@@ -223,13 +223,13 @@ With GnuPG, this is only necessary once. Subsequent messages to the same recipie
 
 #### Note about published keys
 
-Once the recipient's key has been added to the sender's keyring, and assuming the current working directory contains a signed document `signed_doc.txt`, and the user namespace identifier of the recipient public key is `91f68ffafa1288ad55cb3e61e937870fb5598cc098e125fe29412ab3047f15e1@smp.testpoint.io` then cyphertext of signed business document can be created with:
+Once the recipient's key has been added to the sender's keyring, and assuming the current working directory contains a signed document `signed_doc.txt`, and the user namespace identifier of the recipient public key is `91f68ffafa1288ad55cb3e61e937870fb5598cc098e125fe29412ab3047f15e1@dcp.testpoint.io` then cyphertext of signed business document can be created with:
 
 ```
 gpg2 --armour \
  --output "cyphertext.gpg"
  --encrypt \
- --recipient 91f68ffafa1288ad55cb3e61e937870fb5598cc098e125fe29412ab3047f15e1@smp.testpoint.io \
+ --recipient 91f68ffafa1288ad55cb3e61e937870fb5598cc098e125fe29412ab3047f15e1@dcp.testpoint.io \
  signed_doc.txt
 ```
 
@@ -284,6 +284,21 @@ if __name__ == "__main__":
     compose_message()
 ```
 
+### Message schema
+
+```
+{
+    "cyphertext": "string",
+    "hash": "string", 
+    "sender": "string", 
+    "reference": "string"
+}
+```
+
+* "cyphertext" contains encrypted by GPG message using public key of receiver
+* "hash" contains SHA256 hash of message (before encryption)
+* "sender" contains unique participant identifier of client
+* "reference" contains additional information
 
 ### Generate signature
 
