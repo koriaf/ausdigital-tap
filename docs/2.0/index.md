@@ -49,7 +49,7 @@ ausdigital-idp/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [IDP](ht
 Copyright (c) 2016 the Editor and Contributors. All rights reserved.
 
 This Specification is free software; you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software Foundation; 
+terms of the GNU General Public License as published by the Free Software Foundation;
 either version 3 of the License, or (at your option) any later version.
 
 This Specification is distributed in the hope that it will be useful, but WITHOUT ANY
@@ -80,7 +80,7 @@ protocol specified in this document. The TAP is an autonomous agent in business-
 document exchange.
 
 A TAP might be provided by a commercial ledger service, or maintained as part of an
-independent business system. 
+independent business system.
 
 The TAP specification has two parts. The main part (ausdigital-tap/2) defines the protocol all peers
 must follow (and interfaces they must provide) to send and receive business documents. The
@@ -98,9 +98,9 @@ repository. Future semantic payloads may be supported without change to the prot
 
 All TAPs depend on the following Services:
 
- * ausdigital-dcl/1 
- * ausdigital-dcp/1 
- * ausdigital-nry/1 
+ * ausdigital-dcl/1
+ * ausdigital-dcp/1
+ * ausdigital-nry/1
 
 TAPGW providers also depend on the
 ausdigital-idp/1. TAPs do not need to
@@ -131,7 +131,7 @@ When a valid message is received, the TAP issues an HTTP 200 status and returns 
     "id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXX",
     "attributes": {
         "uuid": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXX",
-        "status": "in_transit"
+        "deliveryStatus": "in_transit"
     }
   }
 }
@@ -142,7 +142,7 @@ See the TAP Protocol Details chapter for more information.
 
 # TAP Protocol Details
 
-The TAP Protocol is a very simple REST API. One business sends a message directly to another business' TAP endpoint (discovered via the DCP):
+The TAP Protocol is a very simple REST API. One business sends a message directly to another business TAP endpoint (discovered via the DCP):
 
  * The sender uses the HTTP POST verb (over HTTPS) to send the signed message to a TAP.
  * The TAP replies with a HATEOS-style list of callback URLs.
@@ -300,8 +300,8 @@ if __name__ == "__main__":
 ```
 {
     "cyphertext": "string",
-    "hash": "string", 
-    "sender": "string", 
+    "hash": "string",
+    "sender": "string",
     "reference": "string"
 }
 ```
@@ -354,7 +354,7 @@ TODO:
 
  * explain callback URLs
  * explain callback semantic URLs
- 
+
 
 # Related Material
 
